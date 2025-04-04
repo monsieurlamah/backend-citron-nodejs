@@ -13,6 +13,7 @@ const Intermediation = require("../immobilier/Intermediation.model");
 const Notification = require("../immobilier/Notification.model");
 const Appointment = require("../immobilier/Appointment.model");
 const User = require("../user/User.model");
+const Wishlist = require("../immobilier/Wishlist.model");
 
 // Définir les relations entre les modèles (tables)
 
@@ -64,6 +65,15 @@ Appointment.belongsTo(Property, { foreignKey: "property_id" });
 User.hasMany(Appointment, { foreignKey: "utilisateur_id" });
 Appointment.belongsTo(User, { foreignKey: "utilisateur_id" });
 
+// Un utilisateur peut demander plusieurs favoris
+User.hasMany(Wishlist, {foreignKey: "utilisateur_id"});
+Wishlist.belongsTo(User, { foreignKey: "utilisateur_id" });
+
+// Une propriété peut recevoir plusieurs favoris
+Property.hasMany(Wishlist, { foreignKey: "property_id", onDelete: "CASCADE" });
+Wishlist.belongsTo(Property, { foreignKey: "property_id" });
+
+
 // Exporter tous les modèles
 module.exports = {
   db,
@@ -75,5 +85,6 @@ module.exports = {
   Review,
   Intermediation,
   Notification,
-  Appointment
+  Appointment,
+  Wishlist,
 };

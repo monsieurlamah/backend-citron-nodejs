@@ -2,22 +2,31 @@ console.log("🚀 Démarrage du serveur...");
 
 const express = require("express");
 const ENV = require("./config");
-const { db } = require("./models/relations");
+const { db, Review, Wishlist, Appointment, Booking, Category, Intermediation, Notification, Payment, User } = require("./models/relations");
+const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const app = express();
 
 // IMPORTATION DES ROUTES
 const userRouter = require("./router/user/user.router");
+const propertyRouter = require('./router/immobilier/property.router')
+const ReviewRouter = require('./router/immobilier/review.router')
+const CategoryRouter = require('./router/immobilier/category.router')
 
 // PORT
 const PORT = ENV.PORT || 8080;
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cookieParser())
 app.use(morgan('tiny'))
 
 // PREFIX
 app.use("/api/v1/user", userRouter);
+app.use('/api/v1/property', propertyRouter)
+app.use('/api/v1/review', ReviewRouter)
+app.use('/api/v1/category', CategoryRouter)
+
 
 // MIDDLEWARE DE GESTION D'ERREURS
 app.use((err, req, res, next) => {
@@ -35,6 +44,12 @@ app.use((err, req, res, next) => {
 });
 
 // SERVEUR
+
+// User.sync({ alter: true })  // Modifie la table existante sans supprimer les données
+//   .then(() => {
+//     console.log("Table Wishlist mise à jour avec le champ is_deleted !");
+//   })
+//   .catch((err) => console.error("Erreur lors de la synchronisation :", err));
 
 const startServer = async () => {
   try {

@@ -22,6 +22,11 @@ const Category = db.define(
       allowNull: true,
 
     },
+    is_deleted: {  // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     timestamps: true, // Ajoute 'createdAt' et 'updatedAt'

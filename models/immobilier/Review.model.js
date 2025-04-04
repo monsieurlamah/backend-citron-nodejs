@@ -12,6 +12,11 @@ const Review = db.define(
       type: DataTypes.TEXT,
       alloWNull: true,
     },
+    is_deleted: {  // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   { timestamps: true }
 );

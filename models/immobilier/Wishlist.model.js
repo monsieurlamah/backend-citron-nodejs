@@ -6,13 +6,11 @@ const Property = require("./Property.model");
 const Wishlist = db.define(
   "Wishlist",
   {
-    utilisateur_id: {
-      type: DataTypes.UUID,
-      references: { model: User, key: "id" },
-    },
-    property_id: {
-      type: DataTypes.UUID,
-      references: { model: Property, key: "id" },
+    is_deleted: {
+      // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   { timestamps: true }

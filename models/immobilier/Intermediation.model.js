@@ -10,6 +10,11 @@ const Intermediation = db.define(
       type: DataTypes.ENUM("en_attente", "traiter", "refuser"),
       defaultValue: "en_attente",
     },
+    is_deleted: {  // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   { timestamps: true }
 );

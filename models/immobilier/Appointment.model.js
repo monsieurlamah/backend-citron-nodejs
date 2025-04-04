@@ -9,6 +9,11 @@ const Appointment = db.define(
       type: DataTypes.ENUM("en_attente", "confirmer", "annuler"),
       defaultValue: "en_attente",
     },
+    is_deleted: {  // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   { timestamps: true }
 );

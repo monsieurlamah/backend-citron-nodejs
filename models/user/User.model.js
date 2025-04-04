@@ -45,6 +45,12 @@ const User = db.define(
         isIn: [["user", "proprietaire", "locataire", "admin", "superAdmin"]],
       },
     },
+    is_deleted: {
+      // Nouveau champ ajouté
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     timestamps: true, // Correction ici

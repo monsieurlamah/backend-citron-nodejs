@@ -18,6 +18,11 @@ const Booking = db.define("Booking", {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
+  is_deleted: {  // Nouveau champ ajouté
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 }, {
   timestamps: true,
 });
