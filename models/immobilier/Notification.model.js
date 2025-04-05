@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const db = require("../../config/db");
 
-const Review = db.define(
-  "Review",
+const Notification = db.define(
+  "Notification",
   {
     status: {
       type: DataTypes.ENUM("non_lu", "lu"),
@@ -22,4 +22,4 @@ const Review = db.define(
   { timestamps: true }
 );
 
-module.exports = Review;
+module.exports = Notification;
